@@ -1,199 +1,178 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Lecture & Lab Grade Calculator</title>
+<meta charset="UTF-8">
+<title>Grade Calculator</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
-body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;max-width:980px;margin:28px auto;padding:18px}
-h1{font-size:1.6rem;margin-bottom:8px}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.card{border:1px solid #ddd;padding:12px;border-radius:8px;background:#fafafa}
-label{display:block;font-size:0.9rem;margin-bottom:6px}
-input[type=number]{width:100%;padding:8px;border-radius:6px;border:1px solid #ccc}
-.full{grid-column:1/-1}
-.row{display:flex;gap:8px}
-button{padding:10px 14px;border-radius:8px;border:0;background:#1765d8;color:white;cursor:pointer}
-button.secondary{background:#666}
-.result{font-weight:700;font-size:1.1rem}
-small{color:#555}
-.muted{color:#666;font-size:0.9rem}
-@media (max-width:760px){.grid{grid-template-columns:1fr}}
+    body {
+        font-family: 'Inter', sans-serif;
+        margin: 0;
+        padding: 20px;
+        background: linear-gradient(135deg, #eef2f7, #cfd9e8);
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 20px;
+        font-weight: 600;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: auto;
+    }
+
+    .card {
+        background: white;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 14px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .section-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 12px;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 6px;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: 1fr 120px;
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+
+    label {
+        padding-top: 6px;
+        font-size: 0.95rem;
+    }
+
+    input {
+        padding: 8px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        font-size: 0.95rem;
+    }
+
+    .result-box {
+        text-align: center;
+        padding: 20px;
+        background: #f6f7fb;
+        border-radius: 12px;
+        font-size: 1.4rem;
+        font-weight: 600;
+    }
+
+    .grade-A { color: #0066ff; }
+    .grade-B { color: #009933; }
+    .grade-C { color: #cc9900; }
+    .grade-D { color: #ff6600; }
+    .grade-F { color: #cc0000; }
 </style>
 </head>
 <body>
-<h1>Lecture & Lab Grade Calculator</h1>
-<p class="muted">Enter your percent score (0–100) for each item. Empty fields will be ignored.</p>
-<div class="grid">
-<div class="card">
-<h2>Lecture — Workbook Assignments (8)</h2>
-<div id="assignments"></div>
-<small>Assignments contribute <strong>15%</strong> to the lecture grade.</small>
+
+<h1>DMI Grade Calculator</h1>
+
+<div class="container">
+
+    <!-- Assignments -->
+    <div class="card">
+        <div class="section-title">Assignments</div>
+
+        <div class="grid"><label>Terminology Workbook</label><input type="number" id="a1"></div>
+        <div class="grid"><label>Upper Ext. Workbook</label><input type="number" id="a2"></div>
+        <div class="grid"><label>Lower Ext. Workbook</label><input type="number" id="a3"></div>
+        <div class="grid"><label>Shoulder Workbook</label><input type="number" id="a4"></div>
+        <div class="grid"><label>Thoracic Visc. Workbook</label><input type="number" id="a5"></div>
+        <div class="grid"><label>Bony Thorax Workbook</label><input type="number" id="a6"></div>
+        <div class="grid"><label>Pelvis/Hip Workbook</label><input type="number" id="a7"></div>
+        <div class="grid"><label>Abdomen Workbook</label><input type="number" id="a8"></div>
+    </div>
+
+    <!-- Quizzes -->
+    <div class="card">
+        <div class="section-title">Quizzes</div>
+
+        <div class="grid"><label>Terminology Quiz</label><input type="number" id="q1"></div>
+        <div class="grid"><label>Upper Ext. Quiz</label><input type="number" id="q2"></div>
+        <div class="grid"><label>Lower Ext. Quiz</label><input type="number" id="q3"></div>
+        <div class="grid"><label>Shoulder Quiz</label><input type="number" id="q4"></div>
+        <div class="grid"><label>Thoracic/Bony Thorax Quiz</label><input type="number" id="q5"></div>
+        <div class="grid"><label>Pelvis/Hip Quiz</label><input type="number" id="q6"></div>
+        <div class="grid"><label>Abdomen Quiz</label><input type="number" id="q7"></div>
+    </div>
+
+    <!-- Practicals -->
+    <div class="card">
+        <div class="section-title">Practical Exams</div>
+
+        <div class="grid"><label>Practical 1 - Exam 1</label><input type="number" id="p1"></div>
+        <div class="grid"><label>Practical 1 - Exam 2</label><input type="number" id="p2"></div>
+        <div class="grid"><label>Practical 2 - Exam 1</label><input type="number" id="p3"></div>
+        <div class="grid"><label>Practical 2 - Exam 2</label><input type="number" id="p4"></div>
+        <div class="grid"><label>Practical 3 - Exam 1</label><input type="number" id="p5"></div>
+        <div class="grid"><label>Practical 3 - Exam 2</label><input type="number" id="p6"></div>
+        <div class="grid"><label>Practical 3 - Exam 3</label><input type="number" id="p7"></div>
+    </div>
+
+    <!-- Output -->
+    <div class="card result-box" id="result">
+        Enter grades to calculate…
+    </div>
+
 </div>
-<div class="card">
-<h2>Lecture — Quizzes (7)</h2>
-<div id="quizzes"></div>
-<small>Quizzes contribute <strong>20%</strong> to the lecture grade.</small>
-</div>
-<div class="card">
-<h2>Lecture — Section Exams (2) & Final (1)</h2>
-<div id="sectionExams"></div>
-<div style="margin-top:8px">
-<label for="final">Final exam (percent)</label>
-<input type="number" id="final" min="0" max="100" step="0.1" placeholder="0">
-</div>
-<small>Section exams = <strong>30%</strong>, Final = <strong>35%</strong> of lecture grade.</small>
-</div>
-<div class="card">
-<h2>Lab — Practicals (7)</h2>
-<div id="practicals"></div>
-<small>Practical 1 & 2 = <strong>15%</strong> of lab; Practical 3 & 4 = <strong>30%</strong>; Practical 5–7 = <strong>55%</strong>.</small>
-</div>
-<div class="card full">
-<h2>Results</h2>
-<div class="row" style="gap:18px">
-<div>
-<div>Lecture grade</div>
-<div id="lectureResult" class="result">0.00%</div>
-</div>
-<div>
-<div>Lab grade</div>
-<div id="labResult" class="result">0.00%</div>
-</div>
-<div>
-<div>Combined course grade</div>
-<div id="combinedResult" class="result">0.00%</div>
-</div>
-</div>
-<div style="margin-top:12px;display:flex;gap:8px">
-<button id="calcBtn">Calculate</button>
-<button id="resetBtn" class="secondary">Reset</button>
-</div>
-</div>
-</div>
+
 <script>
-function createNumberInput(id){
-  const input=document.createElement('input');
-  input.type='number'; input.min=0; input.max=100; input.step='0.1'; input.id=id; input.placeholder='0';
-  input.addEventListener('input',calculate);
-  return input;
+function calculateGrade() {
+    const fields = [
+        'a1','a2','a3','a4','a5','a6','a7','a8',
+        'q1','q2','q3','q4','q5','q6','q7',
+        'p1','p2','p3','p4','p5','p6','p7'
+    ];
+
+    let sum = 0;
+    let count = 0;
+
+    fields.forEach(id => {
+        const val = parseFloat(document.getElementById(id).value);
+        if (!isNaN(val)) {
+            sum += val;
+            count++;
+        }
+    });
+
+    const resultBox = document.getElementById("result");
+
+    if (count === 0) {
+        resultBox.innerHTML = "Enter grades to calculate…";
+        resultBox.className = "card result-box";
+        return;
+    }
+
+    const avg = sum / count;
+    const pct = avg.toFixed(2) + "%";
+
+    let grade = "";
+    let cssClass = "";
+
+    if (avg >= 92) { grade = "A"; cssClass = "grade-A"; }
+    else if (avg >= 84) { grade = "B"; cssClass = "grade-B"; }
+    else if (avg >= 75) { grade = "C"; cssClass = "grade-C"; }
+    else if (avg >= 67) { grade = "D"; cssClass = "grade-D"; }
+    else { grade = "F"; cssClass = "grade-F"; }
+
+    resultBox.innerHTML = `Current Grade: <span class="${cssClass}">${grade} (${pct})</span>`;
 }
 
-// Custom labels
-const assignmentLabels=['Terminology Workbook','Upper Ext. Workbook','Lower Ext. Workbook','Shoulder Workbook','Thoracic Visc. Workbook','Bony Thorax Workbook','Pelvis/Hip Workbook','Abdomen Workbook'];
-const quizLabels=['Terminology Quiz','Upper Ext. Quiz','Lower Ext. Quix','Shoulder Quiz','Thoracic/Bony Thorax Quiz','Pelvis/Hip Quiz','Abdomen Quiz'];
-const practicalLabels=['Practical 1, Exam 1','Practical 1, Exam 2','Practical 2, Exam 1','Practical 2, Exam 2','Practical 3, Exam 1','Practical 3, Exam 2','Practical 3, Exam 3'];
-
-// Build inputs with labels
-const assignmentsDiv=document.getElementById('assignments');
-assignmentLabels.forEach((text,i)=>{
-  const label=document.createElement('label');
-  label.textContent=text;
-  label.htmlFor=`a${i+1}`;
-  const input=createNumberInput(`a${i+1}`);
-  assignmentsDiv.appendChild(label);
-  assignmentsDiv.appendChild(input);
+document.querySelectorAll("input").forEach(input => {
+    input.addEventListener("input", calculateGrade);
 });
-
-const quizzesDiv=document.getElementById('quizzes');
-quizLabels.forEach((text,i)=>{
-  const label=document.createElement('label');
-  label.textContent=text;
-  label.htmlFor=`q${i+1}`;
-  const input=createNumberInput(`q${i+1}`);
-  quizzesDiv.appendChild(label);
-  quizzesDiv.appendChild(input);
-});
-
-const sectionExamsDiv=document.getElementById('sectionExams');
-for(let i=1;i<=2;i++){
-  const label=document.createElement('label');
-  label.textContent=`Section Exam ${i}`;
-  label.htmlFor=`s${i}`;
-  const input=createNumberInput(`s${i}`);
-  sectionExamsDiv.appendChild(label);
-  sectionExamsDiv.appendChild(input);
-}
-
-const practicalsDiv=document.getElementById('practicals');
-practicalLabels.forEach((text,i)=>{
-  const label=document.createElement('label');
-  label.textContent=text;
-  label.htmlFor=`p${i+1}`;
-  const input=createNumberInput(`p${i+1}`);
-  practicalsDiv.appendChild(label);
-  practicalsDiv.appendChild(input);
-});
-
-function getNumber(id){
-  const el=document.getElementById(id);
-  const val=parseFloat(el.value);
-  return Number.isFinite(val)?val:NaN;
-}
-
-function calculate(){
-  // Lecture
-  const assignments=Array.from({length:assignmentLabels.length},(_,i)=>getNumber(`a${i+1}`)).filter(v=>!isNaN(v));
-  const quizzes=Array.from({length:quizLabels.length},(_,i)=>getNumber(`q${i+1}`)).filter(v=>!isNaN(v));
-  const sections=Array.from({length:2},(_,i)=>getNumber(`s${i+1}`)).filter(v=>!isNaN(v));
-  const final=getNumber('final');
-
-  function weightedAvg(values,weight){
-    if(values.length===0) return {earned:0,weightUsed:0};
-    return {earned:(values.reduce((a,b)=>a+b,0)/values.length)*weight/100, weightUsed:weight};
-  }
-
-  const aScore=weightedAvg(assignments,15);
-  const qScore=weightedAvg(quizzes,20);
-  const sScore=weightedAvg(sections,30);
-  const fScore=isNaN(final)?{earned:0,weightUsed:0}:{earned:final*0.35,weightUsed:35};
-
-  let lectureEarned=aScore.earned+qScore.earned+sScore.earned+fScore.earned;
-  let lectureWeight=aScore.weightUsed+qScore.weightUsed+sScore.weightUsed+fScore.weightUsed;
-  let lecturePct=lectureWeight?lectureEarned/lectureWeight*100:0;
-
-  // Lab
-  const p1p2=[getNumber('p1'),getNumber('p2')].filter(v=>!isNaN(v));
-  const p3p4=[getNumber('p3'),getNumber('p4')].filter(v=>!isNaN(v));
-  const p5to7=[getNumber('p5'),getNumber('p6'),getNumber('p7')].filter(v=>!isNaN(v));
-
-  const labEarned=weightedAvg(p1p2,15).earned+weightedAvg(p3p4,30).earned+weightedAvg(p5to7,55).earned;
-  const labWeight=weightedAvg(p1p2,15).weightUsed+weightedAvg(p3p4,30).weightUsed+weightedAvg(p5to7,55).weightUsed;
-  let labPct=labWeight?labEarned/labWeight*100:0;
-
-  // Combined
-  const cEarned=weightedAvg(assignments,7.5).earned+weightedAvg(quizzes,10).earned+weightedAvg(sections,15).earned+fScore.earned*0.5+weightedAvg(p1p2,7.5).earned+weightedAvg(p3p4,15).earned+weightedAvg(p5to7,27.5).earned;
-  let combinedPct=cEarned;
-
-  function getLetterGrade(pct){
-    if(pct>=92)return {grade:'A',color:'blue'};
-    if(pct>=84)return {grade:'B',color:'green'};
-    if(pct>=75)return {grade:'C',color:'gold'};
-    if(pct>=67)return {grade:'D',color:'orange'};
-    return {grade:'F',color:'red'};
-  }
-
-  const lLetter=getLetterGrade(lecturePct);
-  const labLetter=getLetterGrade(labPct);
-  const cLetter=getLetterGrade(combinedPct);
-
-  document.getElementById('lectureResult').textContent=lecturePct.toFixed(2)+'% ('+lLetter.grade+')';
-  document.getElementById('lectureResult').style.color=lLetter.color;
-
-  document.getElementById('labResult').textContent=labPct.toFixed(2)+'% ('+labLetter.grade+')';
-  document.getElementById('labResult').style.color=labLetter.color;
-
-  document.getElementById('combinedResult').textContent=combinedPct.toFixed(2)+'% ('+cLetter.grade+')';
-  document.getElementById('combinedResult').style.color=cLetter.color;
-}
-
-document.getElementById('calcBtn').addEventListener('click',calculate);
-document.getElementById('resetBtn').addEventListener('click',()=>{
-  document.querySelectorAll('input[type=number]').forEach(i=>i.value='');
-  calculate();
-});
-
-calculate();
 </script>
+
 </body>
 </html>
